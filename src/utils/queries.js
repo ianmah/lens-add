@@ -1013,3 +1013,9 @@ export const SEARCH = gql`
   ${CommentBaseFields}
   ${CommentMirrorOfFields}
 `;
+
+export const PROXY_ACTION_MUTATION = gql`
+  mutation ProxyAction($request: ProxyActionRequest!) {
+    proxyAction(request: $request)
+  }
+`;
