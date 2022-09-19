@@ -7,7 +7,9 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Card from '../components/Card'
+import QRCode from '../components/LensQR'
 import { PROXY_ACTION_MUTATION } from '../utils/queries'
+import LensQR from '../components/LensQR'
 
 const Container = styled.div`
     border-radius: 8px;`
@@ -44,7 +46,7 @@ function Home({ profile, ...props }) {
 
     return <Container>
         <Button onClick={handleClick}>Follow some dude</Button>
-        hi
+        <LensQR link={"https://irisapp.xyz/"}/>
     </Container>
 }
 
