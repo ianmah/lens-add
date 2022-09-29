@@ -6,8 +6,27 @@ import { useWallet } from './utils/wallet'
 import GlobalStyle from './theme/GlobalStyle'
 import ThemeProvider from './theme/ThemeProvider'
 import Home from './pages/Home'
+import Distro from './pages/Distro'
 import Wallet from './components/Wallet'
 import Button from './components/Button'
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBdzmM2zpA58lUsJZ2aO61oQLwrf28JPW4",
+    authDomain: "irisxyz.firebaseapp.com",
+    projectId: "irisxyz",
+    storageBucket: "irisxyz.appspot.com",
+    messagingSenderId: "712326880671",
+    appId: "1:712326880671:web:9c351f81f091525ad9b1aa"
+  };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app)
 
 const Container = styled.div`
     padding: 1em
@@ -22,6 +41,7 @@ function App() {
         window.sessionStorage.clear()
         window.location.reload()
     }
+    
 
     return (
             <ApolloProvider>
@@ -31,6 +51,7 @@ function App() {
                     <Wallet setProfile={setProfile} profile={profile}/>
                     <Routes>
                         <Route path='/' element={<Container><Home profile={profile} /></Container>}/>
+                        <Route path='/distro' element={<Container><Distro profile={profile} db={db} /></Container>}/>
                     </Routes>
                 </ThemeProvider>
             </ApolloProvider>

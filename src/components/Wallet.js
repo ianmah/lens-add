@@ -173,10 +173,7 @@ const { wallet, setWallet, setLensHub, authToken, setProvider } = useWallet()
           <br/>
         </>
       }
-      { wallet.signer ? 
-        <Login/> : 
-        <Button onClick={connectWallet} >Connect Wallet</Button>
-      }
+      { !wallet.signer && <Button onClick={connectWallet} >Connect Wallet</Button> }
     </LoginContainer>
   );
 }
