@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "irisxyz"
+  },
+  "targets": {
+    "irisxyz": {
+      "hosting": {
+        "prod": [
+          "lens-wl"
+        ]
+      }
+    }
+  }
+}
