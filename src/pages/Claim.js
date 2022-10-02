@@ -18,7 +18,7 @@ const Container = styled.div`
 function Claim({ db, ...props }) {
     let params = useParams();
     const { wallet, provider } = useWallet()
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState(200)
     const {
       register,
       handleSubmit,
@@ -54,13 +54,21 @@ function Claim({ db, ...props }) {
     }, [])
     
     return <Container>
-        {status === 404 ? <>
+        {(status === 404 || status === 403) && <>
         OOPS! LINK HAS EXPIRED
         Please ask for a new code
-        </> : <>
+        </>}
+        {status === 200 && <>
           <form onSubmit={handleSubmit(async data => {
               console.log(data)
               const docRef = doc(db, "codes", params.code)
+              const docSnap = await getDoc(docRef)
+              const docData = docSnap.data()
+              if (docData && docData.count >= 3) {
+                setStatus(403)
+                return;
+              }
+
               await updateDoc(docRef, 
                 {count: increment(1)},
               )
