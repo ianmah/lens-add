@@ -58,6 +58,10 @@ function Distro({ profile, db, ...props }) {
     }
 
     return <Container>
+        <Card>
+          <h1>SCAN NOW</h1>
+          to be added to the Lens Whitelist
+        </Card>
         <br/>
         <a href={nextUrl} target="_blank" rel="noreferrer">
           <LensQR link={nextUrl}/>

@@ -24,6 +24,7 @@ export default createGlobalStyle`
   }
   h1, h2, h3, h4, b {
     font-family: ${p => p.theme.displayFont};
+    color: ${p => p.theme.displayText};
     font-weight: 600;
     margin: .4em 0;
   }
