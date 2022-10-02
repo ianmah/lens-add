@@ -8,24 +8,38 @@ import Button from '../components/Button'
 import Card from '../components/Card'
 import LensQR from '../components/LensQR'
 import { HOSTNAME } from '../utils/constants'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
 
 const Container = styled.div`
     border-radius: 8px;
     text-align: center;
 `
 
-function Home({ profile, db, ...props }) {
+function Distro({ profile, db, ...props }) {
     const { wallet, provider } = useWallet()
     const [nextUrl, setNextUrl] = useState('')
+    const [unsub, setUnsub] = useState(() => {})
 
     const genCode = async () => {
       try {
-        const docRef = await addDoc(collection(db, "codes"), {})
+        const docRef = await addDoc(collection(db, "codes"), {
+          status: 'unused'
+        })
         console.log("Document written with ID: ", docRef.id)
-        const url = `${HOSTNAME}/scan/${docRef.id}`
+        const url = `${HOSTNAME}/claim/${docRef.id}`
         console.log(url)
         setNextUrl(url)
+
+        const unsubscribe = onSnapshot(doc(db, "codes", docRef.id), (doc) => {
+          const data = doc.data()
+          console.log("Current data: ", data);
+          if (data.status !== 'unused') {
+            genCode()
+          }          
+        })
+
+        setUnsub(() => unsubscribe)
+
       } catch (e) {
         console.error("Error adding document: ", e)
       }
@@ -35,22 +49,26 @@ function Home({ profile, db, ...props }) {
       if (!nextUrl) {
         genCode()
       }
+    }, [])
+
+    useEffect(() => {
+      
+
     })
     
     const handleClick = async () => {
+      unsub()
       await genCode()
     }
 
     return <Container>
-        
         <br/>
         <a href={nextUrl} target="_blank" rel="noreferrer">
           <LensQR link={nextUrl}/>
-          {nextUrl}
         </a>
         <br/>
         <Button onClick={handleClick}>Refresh code</Button>
     </Container>
 }
 
-export default Home
+export default Distro

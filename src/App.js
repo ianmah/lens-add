@@ -7,6 +7,7 @@ import GlobalStyle from './theme/GlobalStyle'
 import ThemeProvider from './theme/ThemeProvider'
 import Home from './pages/Home'
 import Distro from './pages/Distro'
+import Claim from './pages/Claim'
 import Wallet from './components/Wallet'
 import Button from './components/Button'
 import { initializeApp } from "firebase/app";
@@ -52,6 +53,7 @@ function App() {
                     <Routes>
                         <Route path='/' element={<Container><Home profile={profile} /></Container>}/>
                         <Route path='/distro' element={<Container><Distro profile={profile} db={db} /></Container>}/>
+                        <Route path='/claim/:code' element={<Container><Claim db={db} /></Container>}/>
                     </Routes>
                 </ThemeProvider>
             </ApolloProvider>
