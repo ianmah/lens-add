@@ -21,6 +21,7 @@ function Distro({ profile, db, ...props }) {
     const [unsub, setUnsub] = useState(() => {})
 
     const genCode = async () => {
+      unsub()
       try {
         const docRef = await addDoc(collection(db, "codes"), {
           status: 'unused'
@@ -33,7 +34,7 @@ function Distro({ profile, db, ...props }) {
         const unsubscribe = onSnapshot(doc(db, "codes", docRef.id), (doc) => {
           const data = doc.data()
           console.log("Current data: ", data);
-          if (data.status !== 'unused') {
+          if (data && data.status !== 'unused') {
             genCode()
           }          
         })
