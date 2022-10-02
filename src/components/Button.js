@@ -2,15 +2,14 @@ import styled from 'styled-components'
 
 const Button = styled.button`
     margin-top: 0.5em;
-    border: 1px solid white;
+    border: none;
     border-radius: 6px;
     padding: 0.6em 2em;
     font-family: 'Fira Mono';
-    font-weight: 500;
     color: ${(p) => p.theme.textLight};
-    background: none;
+    background: ${p => p.theme.primary};
     letter-spacing: 0.02em;
-    transition: all 100ms;
+    transition: all 150ms;
     :hover {
         background: ${(p) => p.theme.primaryHover};
         cursor: pointer;

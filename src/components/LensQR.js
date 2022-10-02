@@ -6,7 +6,7 @@ function LensQR({link}) {
 
     return (
         <>
-            <div style={{ background: "white", height: "auto", margin: "0 auto", maxWidth: 200, width: "100%", padding: 30 }}>
+            <div style={{ background: "#EFEFEF", height: "auto", margin: 'auto', maxWidth: 200, width: "100%", padding: '15px 15px 10px 15px', borderRadius: '25px' }}>
               <QRCode
                 size={256}
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
