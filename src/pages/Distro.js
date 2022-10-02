@@ -18,28 +18,28 @@ const Container = styled.div`
 function Distro({ profile, db, ...props }) {
     const { wallet, provider } = useWallet()
     const [nextUrl, setNextUrl] = useState('')
-    const [unsub, setUnsub] = useState(() => {})
+    const [unsubs, setUnsubs] = useState({})
 
     const genCode = async () => {
-      unsub()
       try {
         const docRef = await addDoc(collection(db, "codes"), {
           status: 'unused'
         })
-        console.log("Document written with ID: ", docRef.id)
+        // console.log("Document written with ID: ", docRef.id)
         const url = `${HOSTNAME}/claim/${docRef.id}`
         console.log(url)
         setNextUrl(url)
 
-        const unsubscribe = onSnapshot(doc(db, "codes", docRef.id), (doc) => {
+        let unsubscribe;
+        unsubscribe = onSnapshot(doc(db, "codes", docRef.id), (doc) => {
           const data = doc.data()
           console.log("Current data: ", data);
           if (data && data.status !== 'unused') {
+            // unsub?
+            unsubscribe()
             genCode()
           }          
         })
-
-        setUnsub(() => unsubscribe)
 
       } catch (e) {
         console.error("Error adding document: ", e)
@@ -51,14 +51,9 @@ function Distro({ profile, db, ...props }) {
         genCode()
       }
     }, [])
-
-    useEffect(() => {
-      
-
-    })
     
     const handleClick = async () => {
-      unsub()
+      // unsub?
       await genCode()
     }
 
