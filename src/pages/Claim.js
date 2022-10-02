@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import Button from '../components/Button'
 import Card from '../components/Card'
-import { HOSTNAME } from '../utils/constants'
 import { increment, doc, getDoc, updateDoc } from 'firebase/firestore'
 
 const Container = styled.div`

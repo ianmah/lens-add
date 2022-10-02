@@ -15,9 +15,10 @@ function Home({ profile, ...props }) {
   
 
     return <Container>
-        <Link to={'distro'}>
+        {wallet.signer && <Link to={'distro'}>
           <Button onClick={() => {}}>Generate Code</Button>
         </Link>
+        }
     </Container>
 }
 

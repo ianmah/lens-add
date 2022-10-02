@@ -2,20 +2,20 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
 const theme = {
-    primary: '#8c20c6',
-    primaryHover: '#333',
+    primary: '#ABFE2C',
+    primaryHover: '#E5FFBE',
     border: '#8300d0 2px solid',
     // background: 'linear-gradient(140deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 50%, rgba(76,13,113,1) 100%)',
-    background: 'black',
+    background: 'white',
     lightBackground: '#eeeeee18',
-    text: 'white',
-    textLight: '#fff',
+    text: 'black',
+    textLight: '#00501E',
     greyed: '#747c90',
     error: '#FF3236',
-    darken: '#fffaf8',
-    darken2: '#FFF3EE',
-    font: `'Satoshi', sans-serif`,
-    displayFont: `'Clash Display', sans-serif`,
+    darken: '#000af8',
+    darken2: '#000af8',
+    font: `'Poppins', sans-serif`,
+    displayFont: `'Space Grotesk', sans-serif`,
     hrefUnderline: `
     display: inline-block;
     &:after {

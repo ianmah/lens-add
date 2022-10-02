@@ -51,11 +51,18 @@ const { wallet, setWallet, setLensHub, authToken, setProvider } = useWallet()
   });
 
   const connectWallet = async () => {
-    const instance = await web3Modal.connect();
+    let instance;
+    let provider;
 
-    const provider = new ethers.providers.Web3Provider(instance)
     // const provider = new ethers.providers.Web3Provider(window.ethereum)
-    await provider.send("eth_requestAccounts", []);
+    try {
+      instance = await web3Modal.connect();
+      provider = new ethers.providers.Web3Provider(instance)
+      await provider.send("eth_requestAccounts", []);
+    } catch (e) {
+      console.error(e)
+      return;
+    }
     const signer = provider.getSigner()
     const address = await signer.getAddress()
 
@@ -98,7 +105,7 @@ const { wallet, setWallet, setLensHub, authToken, setProvider } = useWallet()
               params: [network],
             });
           } catch (addError) {
-            throw addError;
+            console.error(addError);
           }
         }
       }
@@ -162,18 +169,10 @@ const { wallet, setWallet, setLensHub, authToken, setProvider } = useWallet()
   
   return (
     <LoginContainer>
-      {
-        (!authToken || !wallet.signer) && <>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <img height="180px" src={Logo}/>
-          <br/>
-        </>
-      }
-      { !wallet.signer && <Button onClick={connectWallet} >Connect Wallet</Button> }
+      { !wallet.signer && <>
+        <h1><span>Share</span> and <span>collect</span> your unique code</h1>
+      <Button onClick={connectWallet} >Connect Wallet</Button>
+      </> }
     </LoginContainer>
   );
 }
