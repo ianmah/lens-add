@@ -17,7 +17,7 @@ const Container = styled.div`
 function Claim({ db, ...props }) {
     let params = useParams();
     const { wallet, provider } = useWallet()
-    const [status, setStatus] = useState(200)
+    const [status, setStatus] = useState(0)
     const {
       register,
       handleSubmit,
@@ -58,6 +58,10 @@ function Claim({ db, ...props }) {
         Please ask for a new code
         </>}
         {status === 200 && <>
+          <h1>Congratulations</h1>
+          Stay tuned to recieve an email about your whitelist details
+        </>}
+        {status === 0 && <>
           <form onSubmit={handleSubmit(async data => {
               console.log(data)
               const docRef = doc(db, "codes", params.code)
@@ -71,6 +75,8 @@ function Claim({ db, ...props }) {
               await updateDoc(docRef, 
                 {count: increment(1)},
               )
+
+              setStatus(200)
             })}>
 
             First Name
