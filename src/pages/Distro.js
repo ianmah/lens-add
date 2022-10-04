@@ -4,9 +4,10 @@ import { utils } from 'ethers'
 import omitDeep from 'omit-deep'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Button from '../components/Button'
+import Button, { SecondaryButton } from '../components/Button'
 import Card from '../components/Card'
 import LensQR from '../components/LensQR'
+import Toast from '../components/Toast'
 import { HOSTNAME } from '../utils/constants'
 import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
 import footer from '../assets/footer.svg'
@@ -29,6 +30,7 @@ function Distro({ profile, db, ...props }) {
     const { wallet, provider } = useWallet()
     const [nextUrl, setNextUrl] = useState('')
     const [unsubs, setUnsubs] = useState({})
+    const [toastMsg, setToastMsg] = useState('')
 
     const genCode = async () => {
       try {
@@ -67,6 +69,16 @@ function Distro({ profile, db, ...props }) {
       await genCode()
     }
 
+    const handleShare = async () => {
+      navigator.clipboard.writeText(nextUrl).then(function() {
+        console.log('Copying to clipboard was successful!');
+        setToastMsg('Copied to clipboard!')
+      }, function(err) {
+        console.error('Could not copy text: ', err);
+      });
+      await genCode()
+    }
+
     return <Container>
         <Card>
           <H1>SCAN NOW</H1>
@@ -78,7 +90,11 @@ function Distro({ profile, db, ...props }) {
         </a>
         <br/>
         <Button onClick={handleClick}>Refresh code</Button>
+        <SecondaryButton onClick={handleShare}>Share code</SecondaryButton>
         <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
+        <Toast code={nextUrl} >
+          {toastMsg}
+        </Toast>
     </Container>
 }
 

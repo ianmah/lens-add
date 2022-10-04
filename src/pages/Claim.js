@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useWallet } from '../utils/wallet'
-import { utils } from 'ethers'
-import omitDeep from 'omit-deep'
 import { useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
@@ -19,6 +17,8 @@ const Input = styled.input`
   border: #e2e4e8 1px solid;
   width: 100%;
   border-radius: 4px;
+  font-size: 16px;
+  font-family: ${p => p.theme.font};
 `
 const H1 = styled.h1`
   font-size: 3em;
@@ -78,7 +78,7 @@ function Claim({ db, ...props }) {
     
     return <Container>
         {(status === 404 || status === 403) && <>
-        OOPS! LINK HAS EXPIRED
+        OOPS! LINK HAS EXPIRED. <br/>
         Please ask for a new code
         </>}
         {status === 200 && <>
@@ -129,6 +129,7 @@ function Claim({ db, ...props }) {
             <Label>Email</Label>
             <Input {...register('email', { required: true, pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ })} />
             {errors.email && <Error>Please enter a valid email.</Error>}
+            <br/>
             <br/>
 
             <Button type="submit">Submit</Button>

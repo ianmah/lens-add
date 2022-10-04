@@ -4,8 +4,9 @@ const Button = styled.button`
     margin-top: 0.5em;
     border: none;
     border-radius: 6px;
-    padding: 0.6em 2em;
+    padding: 0.6em 3.5em;
     font-family: 'Fira Mono';
+    font-size: 16px;
     color: ${(p) => p.theme.textLight};
     background: ${p => p.theme.primary};
     letter-spacing: 0.02em;
@@ -26,6 +27,17 @@ const Button = styled.button`
         background: ${(p) => p.theme.primary};
     }
 `;
+
+export const SecondaryButton = styled(Button)`
+    color: grey;
+    background: #D0D0D0;
+    :hover {
+        background: #E8E8E8;
+    }
+    :focus {
+        background: #E8E8E8;
+    }
+`
 
 
 export const RoundedButton = styled(Button)`
