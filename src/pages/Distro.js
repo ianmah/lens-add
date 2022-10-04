@@ -13,8 +13,10 @@ import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
 import footer from '../assets/footer.svg'
 
 const Container = styled.div`
+    margin-top: 4em;
     border-radius: 8px;
     text-align: center;
+    padding: 1em;
 `
 
 const H1 = styled.h1`

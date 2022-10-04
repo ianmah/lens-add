@@ -8,7 +8,6 @@ import ThemeProvider from './theme/ThemeProvider'
 import Home from './pages/Home'
 import Distro from './pages/Distro'
 import Claim from './pages/Claim'
-import Wallet from './components/Wallet'
 import Button from './components/Button'
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -49,7 +48,6 @@ function App() {
                 <ThemeProvider>
                     <GlobalStyle />
                     {profile.id && <Button onClick={handleLogout}>Logout</Button>}
-                    <Wallet setProfile={setProfile} profile={profile}/>
                     <Routes>
                         <Route path='/' element={<Container><Home profile={profile} /></Container>}/>
                         <Route path='/distro' element={<Container><Distro profile={profile} db={db} /></Container>}/>

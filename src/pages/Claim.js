@@ -8,6 +8,7 @@ import Card from '../components/Card'
 import { increment, doc, getDoc, updateDoc } from 'firebase/firestore'
 
 const Container = styled.div`
+    margin-top: 4em;
     border-radius: 8px;
     margin-top: 1em;
     padding: 1em;
@@ -15,7 +16,7 @@ const Container = styled.div`
 
 const Input = styled.input`
   border: #e2e4e8 1px solid;
-  width: 100%;
+  width: 95%;
   border-radius: 4px;
   font-size: 16px;
   font-family: ${p => p.theme.font};
