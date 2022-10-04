@@ -12,13 +12,14 @@ import LensHub from '../abi/LensHub.json'
 import { useWallet } from '../utils/wallet'
 import Login from './Login'
 import Button from './Button'
-import Logo from '../assets/logo.png'
+import WalletIllustration from '../assets/illustration.svg'
 
 const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 40px;
 `
 
 function Wallet({ setProfile = () => {}, ...props }) {
@@ -167,14 +168,15 @@ const { wallet, setWallet, setLensHub, authToken, setProvider } = useWallet()
   //   connectWallet()
   // }, [])
   
-  return (
+  return <>
+    { !wallet.signer && <img src={WalletIllustration} width='100%' alt='colorful pattern' /> }
     <LoginContainer>
       { !wallet.signer && <>
         <h1><span>Share</span> and <span>collect</span> your unique code</h1>
       <Button onClick={connectWallet} >Connect Wallet</Button>
       </> }
     </LoginContainer>
-  );
+  </>
 }
 
 export default Wallet

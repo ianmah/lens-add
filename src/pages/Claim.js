@@ -11,7 +11,31 @@ import { increment, doc, getDoc, updateDoc } from 'firebase/firestore'
 
 const Container = styled.div`
     border-radius: 8px;
-    text-align: center;
+    margin-top: 1em;
+    padding: 1em;
+`
+
+const Input = styled.input`
+  border: #e2e4e8 1px solid;
+  width: 100%;
+  border-radius: 4px;
+`
+const H1 = styled.h1`
+  font-size: 3em;
+  margin: 0;
+`
+
+const Label = styled.p`
+  margin-top: 0.6em;
+`
+
+const P = styled.p`
+  margin: 0;
+`
+
+const Error = styled.span`
+  color: #FF6161;
+  font-size: 0.9em;
 `
 
 function Claim({ db, ...props }) {
@@ -58,10 +82,19 @@ function Claim({ db, ...props }) {
         Please ask for a new code
         </>}
         {status === 200 && <>
+          <br/>
+          <br/>
+          <br/>
           <h1>Congratulations</h1>
           Stay tuned to recieve an email about your whitelist details
         </>}
         {status === 0 && <>
+          <Card>
+            <H1>LFG</H1>
+            <P>Enter your info to join the Lens Whitelist</P>
+          </Card>
+          <br/>
+          <br/>
           <form onSubmit={handleSubmit(async data => {
               console.log(data)
               const docRef = doc(db, "codes", params.code)
@@ -79,31 +112,23 @@ function Claim({ db, ...props }) {
               setStatus(200)
             })}>
 
-            First Name
-            <br/>
-            <input {...register('firstName', { required: true })} />
-            <br/>
+            <Label>First Name</Label>
+            <Input {...register('firstName', { required: true })} />
             <br/>
 
-            Last Name
-            <br/>
-            <input {...register('lastName')} />
-            <br/>
-            {errors.firstName && <p>First name is required.</p>}
+            <Label>Last Name</Label>
+            <Input {...register('lastName')} />
+            {errors.firstName && <Error>First name is required.</Error>}
             <br/>
 
-            Wallet Address
-            <br/>
-            <input {...register('address', { required: true, pattern: /(.*\.eth)|(0x[0-9a-fA-F]{40})/ })} />
-            <br/>
-            {errors.address && <p>Please enter a valid address.</p>}
+            <Label>Wallet Address</Label>
+            <Input {...register('address', { required: true, pattern: /(.*\.eth)|(0x[0-9a-fA-F]{40})/ })} />
+            {errors.address && <Error>Please enter a valid address.</Error>}
             <br/>
 
-            Email
-            <br/>
-            <input {...register('email', { required: true, pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ })} />
-            <br/>
-            {errors.email && <p>Please enter a valid email.</p>}
+            <Label>Email</Label>
+            <Input {...register('email', { required: true, pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ })} />
+            {errors.email && <Error>Please enter a valid email.</Error>}
             <br/>
 
             <Button type="submit">Submit</Button>

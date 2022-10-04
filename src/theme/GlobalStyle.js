@@ -28,6 +28,13 @@ export default createGlobalStyle`
     font-weight: 600;
     margin: .4em 0;
   }
+  h1 {
+    text-transform: uppercase;
+
+    span {
+      color: #0B7332;
+    }
+  }
   p {
     margin: 0.3em 0;
   }

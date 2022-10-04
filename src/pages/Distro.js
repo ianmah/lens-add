@@ -9,10 +9,20 @@ import Card from '../components/Card'
 import LensQR from '../components/LensQR'
 import { HOSTNAME } from '../utils/constants'
 import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
+import footer from '../assets/footer.svg'
 
 const Container = styled.div`
     border-radius: 8px;
     text-align: center;
+`
+
+const H1 = styled.h1`
+  font-size: 3em;
+  margin: 0;
+`
+
+const P = styled.p`
+  margin: 0;
 `
 
 function Distro({ profile, db, ...props }) {
@@ -59,8 +69,8 @@ function Distro({ profile, db, ...props }) {
 
     return <Container>
         <Card>
-          <h1>SCAN NOW</h1>
-          to be added to the Lens Whitelist
+          <H1>SCAN NOW</H1>
+          <P>to be added to the Lens Whitelist</P>
         </Card>
         <br/>
         <a href={nextUrl} target="_blank" rel="noreferrer">
@@ -68,6 +78,7 @@ function Distro({ profile, db, ...props }) {
         </a>
         <br/>
         <Button onClick={handleClick}>Refresh code</Button>
+        <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
     </Container>
 }
 

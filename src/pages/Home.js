@@ -8,17 +8,24 @@ import Button from '../components/Button'
 import Card from '../components/Card'
 
 const Container = styled.div`
-    border-radius: 8px;`
+    border-radius: 8px;
+    text-align: center;
+    color: grey;
+`
 
 function Home({ profile, ...props }) {
     const { wallet, provider } = useWallet()
   
-
     return <Container>
-        {wallet.signer && <Link to={'distro'}>
-          <Button onClick={() => {}}>Generate Code</Button>
-        </Link>
+        {wallet.signer &&
+        <>
+            <Link to={'distro'}>
+            <Button onClick={() => {}}>Generate Code</Button>
+            </Link>        
+            <p>Generate a QR code that allows users to scan and join the Lens Whitelist</p>
+        </>
         }
+        
     </Container>
 }
 
