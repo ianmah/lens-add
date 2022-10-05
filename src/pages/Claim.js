@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useWallet } from '../utils/wallet'
 import { useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
@@ -51,7 +50,6 @@ const StyledButton = styled(Button)`
 
 function Claim({ db, ...props }) {
     let params = useParams();
-    const { wallet, provider } = useWallet()
     const [status, setStatus] = useState(0)
     const {
       register,

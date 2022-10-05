@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Card from '../components/Card'
 import Wallet from '../components/Wallet'
+import { useAccount } from 'wagmi'
 
 const Container = styled.div`
     border-radius: 8px;
@@ -15,11 +16,11 @@ const Container = styled.div`
 `
 
 function Home({ profile, setProfile, ...props }) {
-    const { wallet, provider } = useWallet()
+    const { isConnected } = useAccount()
   
     return <Container>
-        {!wallet.signer && <Wallet setProfile={setProfile} profile={profile}/>}
-        {wallet.signer &&
+        {!isConnected && <Wallet setProfile={setProfile} profile={profile}/>}
+        {isConnected &&
         <>
             <br/>
             <br/>
