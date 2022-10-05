@@ -30,6 +30,8 @@ const P = styled.p`
 
 const ButtonContainer = styled.div`
   margin-top: 3em;
+  z-index: 1000;
+  position: relative;
 `
 
 function Distro({ profile, db, ...props }) {
@@ -97,7 +99,7 @@ function Distro({ profile, db, ...props }) {
         <a href={nextUrl} target="_blank" rel="noreferrer">
           {loading ? <Spinner/> : <LensQR link={nextUrl}/>}
         </a>
-        <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
+        <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0, zIndex: 0 }} alt='plants growing from footer' />
         <ButtonContainer>
           <Button onClick={handleClick}>Refresh code</Button>
           <SecondaryButton onClick={handleShare}>Share code</SecondaryButton>
