@@ -28,9 +28,7 @@ const P = styled.p`
 `
 
 const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 4em;
-  z-index: 100;
+  margin-top: 3em;
 `
 
 function Distro({ profile, db, ...props }) {
@@ -98,7 +96,6 @@ function Distro({ profile, db, ...props }) {
         <a href={nextUrl} target="_blank" rel="noreferrer">
           {loading ? <Spinner/> : <LensQR link={nextUrl}/>}
         </a>
-        <br/>
         <ButtonContainer>
           <Button onClick={handleClick}>Refresh code</Button>
           <SecondaryButton onClick={handleShare}>Share code</SecondaryButton>
