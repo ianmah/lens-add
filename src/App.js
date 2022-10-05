@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import ApolloProvider from './components/Apollo'
 import { useWallet } from './utils/wallet'
