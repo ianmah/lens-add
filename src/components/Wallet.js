@@ -13,6 +13,7 @@ const LoginContainer = styled.div`
   background: url(${bg});
   background-repeat: repeat;
   min-height: 100vh;
+  width: 100%;
 `
 
 const Header = styled.div`
@@ -28,13 +29,13 @@ const H1 = styled.h1`
   text-align: left;
 `
 
-const StyledButton = styled(Button)`
+const ButtonArea = styled.div`
   position: absolute;
   bottom: 10vh;
 `
 
 function Wallet({ ...props }) {
-  const { address, isConnected } = useAccount()
+  const { isConnected } = useAccount()
   
   return <>
     <LoginContainer>
@@ -43,7 +44,9 @@ function Wallet({ ...props }) {
           <H1><span>Share</span> and <span>collect</span> your unique code</H1>
         </Header>
         <img src={WalletIllustration} width='100%' style={{ position: 'absolute', top: 0, left: 0 }} alt='colorful pattern' />
-        <ConnectButton />
+        <ButtonArea>
+          <ConnectButton label="Connect your wallet" />
+        </ButtonArea>
       </> }
     </LoginContainer>
   </>
