@@ -135,6 +135,7 @@ function Claim({ db, ...props }) {
                 lastName,
                 walletAddress,
                 email,
+                code: params.code,
                 referrer: docData.referrer,
               });
 
