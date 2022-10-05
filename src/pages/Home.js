@@ -9,25 +9,40 @@ import Wallet from '../components/Wallet'
 import Address from '../components/Address'
 import { useAccount } from 'wagmi'
 import { ADMIN_LIST } from '../utils/constants'
+import { collection, getDocs } from 'firebase/firestore'
+import { CSVLink, CSVDownload } from 'react-csv'
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     border-radius: 8px;
     text-align: center;
     min-height: 80vh;
 `
 
-function Home({ profile, setProfile, ...props }) {
+function Home({ profile, setProfile, db, ...props }) {
     const { address, isConnected } = useAccount()
-  
+    const [csvData, setCsvData] = useState([])
+
+    const generateCSV = async () => {
+        const querySnapshot = await getDocs(collection(db, "forms"))
+        const newData = []
+        querySnapshot.forEach((doc) => {
+            const { firstName, lastName, walletAddress, email, referrer } = doc.data()
+            newData.push([firstName, lastName, walletAddress, email, referrer])
+        })
+        setCsvData(newData)
+    }
     return <>
     <Address/>
     <Container>
         {!isConnected && <Wallet setProfile={setProfile} profile={profile}/>}
         {isConnected && ADMIN_LIST.has(address) && 
         <>
+            <Button onClick={() => generateCSV()}>Submissions CSV</Button>
+            { csvData[0] && <CSVLink data={csvData} >Download CSV</CSVLink>}
             <Link to={'distro'}>
                 <Button onClick={() => {}}>Generate Code</Button>
             </Link>

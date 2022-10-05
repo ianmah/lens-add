@@ -85,7 +85,7 @@ function App() {
                     <GlobalStyle />
                     {profile.id && <Button onClick={handleLogout}>Logout</Button>}
                     <Routes>
-                        <Route path='/' element={<Container><Home profile={profile} /></Container>}/>
+                        <Route path='/' element={<Container><Home profile={profile} db={db} /></Container>}/>
                         <Route path='/distro' element={<Container><Distro profile={profile} db={db} /></Container>}/>
                         <Route path='/claim/:code' element={<Container><Claim db={db} /></Container>}/>
                     </Routes>
