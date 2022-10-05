@@ -5,8 +5,8 @@ import omitDeep from 'omit-deep'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
-import Card from '../components/Card'
 import Wallet from '../components/Wallet'
+import Address from '../components/Address'
 import { useAccount } from 'wagmi'
 
 const Container = styled.div`
@@ -19,6 +19,7 @@ function Home({ profile, setProfile, ...props }) {
     const { isConnected } = useAccount()
   
     return <Container>
+        <Address/>
         {!isConnected && <Wallet setProfile={setProfile} profile={profile}/>}
         {isConnected &&
         <>

@@ -16,7 +16,6 @@ import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultWallets,
   RainbowKitProvider,
-  Theme,
 } from '@rainbow-me/rainbowkit';
 import {
   chain,

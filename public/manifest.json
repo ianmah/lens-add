@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Lens QR",
+  "name": "Lens QR",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,11 +10,11 @@
     {
       "src": "logo.png",
       "type": "image/png",
-      "sizes": "128x128"
+      "sizes": "128x128 192x192 512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#232428",
   "background_color": "#ffffff"
 }

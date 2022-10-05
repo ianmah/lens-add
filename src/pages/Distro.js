@@ -11,17 +11,16 @@ import Toast from '../components/Toast'
 import { HOSTNAME } from '../utils/constants'
 import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
 import footer from '../assets/footer.svg'
+import Address from '../components/Address'
 
 const Container = styled.div`
-    margin-top: 6em;
-    border-radius: 8px;
     text-align: center;
-    padding: 1em;
 `
 
 const H1 = styled.h1`
   font-size: 3em;
   margin: 0;
+  padding-top: 10vh;
 `
 
 const P = styled.p`
@@ -35,9 +34,7 @@ const ButtonContainer = styled.div`
 `
 
 function Distro({ profile, db, ...props }) {
-    const { wallet, provider } = useWallet()
     const [nextUrl, setNextUrl] = useState('')
-    const [unsubs, setUnsubs] = useState({})
     const [toastMsg, setToastMsg] = useState('')
 
     const genCode = async () => {
@@ -88,6 +85,7 @@ function Distro({ profile, db, ...props }) {
     }
 
     return <Container>
+        <Address/>
         <H1>SCAN NOW</H1>
         <P>to be added to the Lens Whitelist</P>
         <br/>
