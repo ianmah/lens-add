@@ -11,6 +11,7 @@ import Toast from '../components/Toast'
 import { HOSTNAME } from '../utils/constants'
 import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
 import footer from '../assets/footer.svg'
+import Spinner from '../assets/Spinner'
 import Address from '../components/Address'
 import { useAccount } from 'wagmi'
 import { ADMIN_LIST } from '../utils/constants'
@@ -40,6 +41,7 @@ function Distro({ profile, db, ...props }) {
   const { address, isConnected } = useAccount()
     const [nextUrl, setNextUrl] = useState('')
     const [toastMsg, setToastMsg] = useState('')
+    const [loading, setLoading] = useState(true)
 
     const genCode = async () => {
       try {
@@ -50,6 +52,7 @@ function Distro({ profile, db, ...props }) {
         const url = `${HOSTNAME}/claim/${docRef.id}`
         console.log(url)
         setNextUrl(url)
+        setLoading(false)
 
         let unsubscribe;
         unsubscribe = onSnapshot(doc(db, "codes", docRef.id), (doc) => {
@@ -58,6 +61,7 @@ function Distro({ profile, db, ...props }) {
           if (data && data.status !== 'unused') {
             // unsub?
             unsubscribe()
+            setLoading(true)
             genCode()
           }          
         })
@@ -95,7 +99,7 @@ function Distro({ profile, db, ...props }) {
         <P>to be added to the Lens Whitelist</P>
         <br/>
         <a href={nextUrl} target="_blank" rel="noreferrer">
-          <LensQR link={nextUrl}/>
+          {loading ? <Spinner/> : <LensQR link={nextUrl}/>}
         </a>
         <br/>
         <ButtonContainer>
