@@ -97,6 +97,7 @@ function Distro({ profile, db, ...props }) {
         <a href={nextUrl} target="_blank" rel="noreferrer">
           {loading ? <Spinner/> : <LensQR link={nextUrl}/>}
         </a>
+        <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
         <ButtonContainer>
           <Button onClick={handleClick}>Refresh code</Button>
           <SecondaryButton onClick={handleShare}>Share code</SecondaryButton>
@@ -104,7 +105,6 @@ function Distro({ profile, db, ...props }) {
         <Toast code={nextUrl} >
           {toastMsg}
         </Toast>
-        <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
       </>}
       {!ADMIN_LIST.has(address) && <>
           <br/>
