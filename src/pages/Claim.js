@@ -91,8 +91,6 @@ function Claim({ db, ...props }) {
         {(status === 404 || status === 403) && <>
           <br/>
           <br/>
-          <br/>
-          <br/>
         <H1>OOPS! LINK HAS EXPIRED</H1>
         Please ask for a new code
         </>}
