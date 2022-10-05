@@ -40,6 +40,7 @@ function Home({ profile, setProfile, db, ...props }) {
         {!isConnected && <Wallet setProfile={setProfile} profile={profile}/>}
         {isConnected && ADMIN_LIST.has(address) && 
         <>
+            <h1>Dashboard</h1>
             <Button onClick={() => generateCSV()}>Submissions CSV</Button>
             { csvData[0] && <CSVLink data={csvData} >Download CSV</CSVLink>}
             <Link to={'distro'}>
