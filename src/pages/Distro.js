@@ -46,7 +46,8 @@ function Distro({ profile, db, ...props }) {
     const genCode = async () => {
       try {
         const docRef = await addDoc(collection(db, "codes"), {
-          status: 'unused'
+          status: 'unused',
+          referrer: address,
         })
         // console.log("Document written with ID: ", docRef.id)
         const url = `${HOSTNAME}/claim/${docRef.id}`
@@ -84,7 +85,6 @@ function Distro({ profile, db, ...props }) {
 
     const handleShare = async () => {
       navigator.clipboard.writeText(nextUrl).then(function() {
-        console.log('Copying to clipboard was successful!');
         setToastMsg('Copied to clipboard!')
       }, function(err) {
         console.error('Could not copy text: ', err);

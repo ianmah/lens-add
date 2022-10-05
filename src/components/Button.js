@@ -5,7 +5,7 @@ const Button = styled.button`
     border: none;
     display: inline-block;
     border-radius: 6px;
-    padding: 0.8em 3.5em;
+    padding: 0.8em;
     font-family: 'Poppins';
     font-size: 13px;
     color: ${(p) => p.theme.textLight};
@@ -28,6 +28,7 @@ const Button = styled.button`
         background: ${(p) => p.theme.primary};
     }
     width: 90vw;
+    max-width: 700px;
 `;
 
 export const SecondaryButton = styled(Button)`

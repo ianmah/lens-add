@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import Button from '../components/Button'
 import Card from '../components/Card'
-import { increment, doc, getDoc, updateDoc } from 'firebase/firestore'
+import { increment, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import Lensie from '../assets/lensie.svg'
 import WalletIllustration from '../assets/illustration.png'
 
@@ -13,6 +13,9 @@ const Container = styled.div`
     border-radius: 8px;
     margin-top: 1em;
     padding: 1em;
+    max-width: 700px;
+    margin: auto;
+    position: relative;
 `
 
 const Input = styled.input`
@@ -118,6 +121,15 @@ function Claim({ db, ...props }) {
                 {count: increment(1)},
               )
 
+              const { firstName, lastName, walletAddress, email } = data
+              await setDoc(doc(db, "forms", data.walletAddress), {
+                firstName,
+                lastName,
+                walletAddress,
+                email,
+                referrer: docData.referrer,
+              });
+
               setStatus(200)
             })}>
 
@@ -131,8 +143,8 @@ function Claim({ db, ...props }) {
             <br/>
 
             <Label>Wallet Address</Label>
-            <Input {...register('address', { required: true, pattern: /(.*\.eth)|(0x[0-9a-fA-F]{40})/ })} />
-            {errors.address && <Error>Please enter a valid address.</Error>}
+            <Input {...register('walletAddress', { required: true, pattern: /(.*\.eth)|(0x[0-9a-fA-F]{40})/ })} />
+            {errors.walletAddress && <Error>Please enter a valid address.</Error>}
             <br/>
 
             <Label>Email</Label>
