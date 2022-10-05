@@ -12,6 +12,8 @@ import { HOSTNAME } from '../utils/constants'
 import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
 import footer from '../assets/footer.svg'
 import Address from '../components/Address'
+import { useAccount } from 'wagmi'
+import { ADMIN_LIST } from '../utils/constants'
 
 const Container = styled.div`
   text-align: center;
@@ -35,6 +37,7 @@ const ButtonContainer = styled.div`
 `
 
 function Distro({ profile, db, ...props }) {
+  const { address, isConnected } = useAccount()
     const [nextUrl, setNextUrl] = useState('')
     const [toastMsg, setToastMsg] = useState('')
 
@@ -86,6 +89,7 @@ function Distro({ profile, db, ...props }) {
     }
 
     return <Container>
+      {ADMIN_LIST.has(address) && <>
         <Address/>
         <H1>SCAN NOW</H1>
         <P>to be added to the Lens Whitelist</P>
@@ -102,6 +106,18 @@ function Distro({ profile, db, ...props }) {
           {toastMsg}
         </Toast>
         <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
+      </>}
+      {!ADMIN_LIST.has(address) && <>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <h1>You do not currently have access</h1>
+          <p>Please sign in with an admin address.</p>
+          <p style={{ color: 'grey' }} >If you need to swap wallets, click your wallet address to sign out.</p>
+          </>
+      }
     </Container>
 }
 
