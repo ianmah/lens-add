@@ -13,7 +13,7 @@ import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
 import footer from '../assets/footer.svg'
 
 const Container = styled.div`
-    margin-top: 4em;
+    margin-top: 6em;
     border-radius: 8px;
     text-align: center;
     padding: 1em;
@@ -26,6 +26,12 @@ const H1 = styled.h1`
 
 const P = styled.p`
   margin: 0;
+  margin-bottom: 3em;
+`
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  bottom: 20vh;
 `
 
 function Distro({ profile, db, ...props }) {
@@ -82,17 +88,17 @@ function Distro({ profile, db, ...props }) {
     }
 
     return <Container>
-        <Card>
-          <H1>SCAN NOW</H1>
-          <P>to be added to the Lens Whitelist</P>
-        </Card>
+        <H1>SCAN NOW</H1>
+        <P>to be added to the Lens Whitelist</P>
         <br/>
         <a href={nextUrl} target="_blank" rel="noreferrer">
           <LensQR link={nextUrl}/>
         </a>
         <br/>
-        <Button onClick={handleClick}>Refresh code</Button>
-        <SecondaryButton onClick={handleShare}>Share code</SecondaryButton>
+        <ButtonContainer>
+          <Button onClick={handleClick}>Refresh code</Button>
+          <SecondaryButton onClick={handleShare}>Share code</SecondaryButton>
+        </ButtonContainer>
         <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
         <Toast code={nextUrl} >
           {toastMsg}

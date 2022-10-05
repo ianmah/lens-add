@@ -6,10 +6,10 @@ function LensQR({link}) {
 
     return (
         <>
-            <div style={{ background: "#EFEFEF", height: "auto", margin: 'auto', maxWidth: 200, width: "100%", padding: '15px 15px 10px 15px', borderRadius: '25px' }}>
+            <div style={{ background: "#fff", height: "auto", margin: 'auto', maxWidth: 200, width: "100%", padding: '15px 15px 10px 15px', borderRadius: '15px' }}>
               <QRCode
                 size={256}
-                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                style={{ height: "auto", maxWidth: "100%", width: "100%", borderRadius: '10px' }}
                 title="Custom Title"
                 value={value}
                 viewBox={`0 0 256 256`}

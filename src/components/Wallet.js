@@ -12,14 +12,34 @@ import LensHub from '../abi/LensHub.json'
 import { useWallet } from '../utils/wallet'
 import Login from './Login'
 import Button from './Button'
-import WalletIllustration from '../assets/illustration.svg'
+import WalletIllustration from '../assets/illustration.png'
+import bg from '../assets/bg.png'
 
 const LoginContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 40px;
+  background: url(${bg});
+  background-repeat: repeat;
+  min-height: 100vh;
+`
+
+const Header = styled.div`
+  width: 80vw;
+  margin-top: 18vh;
+`
+
+const H1 = styled.h1`
+  color: #F5C3CC;
+  span {
+    color: white;
+  }
+  text-align: left;
+`
+
+const StyledButton = styled(Button)`
+  position: absolute;
+  bottom: 10vh;
 `
 
 function Wallet({ setProfile = () => {}, ...props }) {
@@ -169,11 +189,13 @@ const { wallet, setWallet, setLensHub, authToken, setProvider } = useWallet()
   // }, [])
   
   return <>
-    { !wallet.signer && <img src={WalletIllustration} width='100%' alt='colorful pattern' /> }
     <LoginContainer>
       { !wallet.signer && <>
-        <h1><span>Share</span> and <span>collect</span> your unique code</h1>
-      <Button onClick={connectWallet} >Connect Wallet</Button>
+        <Header>
+          <H1><span>Share</span> and <span>collect</span> your unique code</H1>
+        </Header>
+        <img src={WalletIllustration} width='100%' style={{ position: 'absolute', top: 0, left: 0 }} alt='colorful pattern' />
+        <StyledButton onClick={connectWallet} >Connect your wallet</StyledButton>
       </> }
     </LoginContainer>
   </>

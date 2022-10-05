@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import Button from '../components/Button'
 import Card from '../components/Card'
 import { increment, doc, getDoc, updateDoc } from 'firebase/firestore'
+import Lensie from '../assets/lensie.svg'
+import WalletIllustration from '../assets/illustration.png'
 
 const Container = styled.div`
     margin-top: 4em;
@@ -15,14 +17,17 @@ const Container = styled.div`
 `
 
 const Input = styled.input`
-  border: #e2e4e8 1px solid;
+  border: #D9D9D9 1px solid;
+  color: white;
   width: 95%;
   border-radius: 4px;
+  padding: 0.3em 0.5em;
   font-size: 16px;
   font-family: ${p => p.theme.font};
+  background: ${p => p.theme.background};
 `
 const H1 = styled.h1`
-  font-size: 3em;
+  font-size: 2em;
   margin: 0;
 `
 
@@ -37,6 +42,11 @@ const P = styled.p`
 const Error = styled.span`
   color: #FF6161;
   font-size: 0.9em;
+`
+
+const StyledButton = styled(Button)`
+  position: absolute;
+  bottom: 5em;
 `
 
 function Claim({ db, ...props }) {
@@ -79,21 +89,27 @@ function Claim({ db, ...props }) {
     
     return <Container>
         {(status === 404 || status === 403) && <>
-        OOPS! LINK HAS EXPIRED. <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+        <H1>OOPS! LINK HAS EXPIRED</H1>
         Please ask for a new code
         </>}
         {status === 200 && <>
           <br/>
           <br/>
           <br/>
+          <img src={WalletIllustration} width='100%' style={{ position: 'absolute', top: 0, left: 0 }} alt='colorful pattern' />
           <h1>Congratulations</h1>
           Stay tuned to recieve an email about your whitelist details
         </>}
         {status === 0 && <>
-          <Card>
-            <H1>LFG</H1>
-            <P>Enter your info to join the Lens Whitelist</P>
-          </Card>
+          <br/>
+          <br/>
+          <br/>
+          <H1>WHITELIST SIGN UP</H1>
+          <P>Enter your info to join the Lens Whitelist</P>
           <br/>
           <br/>
           <form onSubmit={handleSubmit(async data => {
@@ -132,8 +148,13 @@ function Claim({ db, ...props }) {
             {errors.email && <Error>Please enter a valid email.</Error>}
             <br/>
             <br/>
+            <br/>
+            
+            <div style={{ width: '100%', textAlign: 'center' }}>
+              <img src={Lensie} style={{ marginLeft: '1.6em' }} alt={'lens mascot'} />
+            </div>
 
-            <Button type="submit">Submit</Button>
+            <StyledButton type="submit">Submit</StyledButton>
           </form>
         </>
         }

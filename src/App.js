@@ -29,7 +29,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 const Container = styled.div`
-    padding: 1em
 `
 
 function App() {

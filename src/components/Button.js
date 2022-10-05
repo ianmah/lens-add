@@ -3,12 +3,13 @@ import styled from 'styled-components'
 const Button = styled.button`
     margin-top: 0.5em;
     border: none;
+    display: inline-block;
     border-radius: 6px;
-    padding: 0.6em 3.5em;
-    font-family: 'Fira Mono';
-    font-size: 16px;
+    padding: 0.8em 3.5em;
+    font-family: 'Poppins';
+    font-size: 13px;
     color: ${(p) => p.theme.textLight};
-    background: ${p => p.theme.primary};
+    background: linear-gradient(89.19deg, #BCE2E5 -0.27%, #FFE9EE 49.84%, #FEF5E6 104.31%);
     letter-spacing: 0.02em;
     transition: all 150ms;
     :hover {
@@ -26,16 +27,17 @@ const Button = styled.button`
     :disabled:hover {
         background: ${(p) => p.theme.primary};
     }
+    width: 90vw;
 `;
 
 export const SecondaryButton = styled(Button)`
-    color: grey;
-    background: #D0D0D0;
+    color: ${(p) => p.theme.textLight};
+    background: #D0D0D066;
     :hover {
-        background: #E8E8E8;
+        background: #D0D0D088;
     }
     :focus {
-        background: #E8E8E8;
+        background: #D0D0D088;
     }
 `
 
