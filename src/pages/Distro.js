@@ -14,7 +14,7 @@ import footer from '../assets/footer.svg'
 import Address from '../components/Address'
 
 const Container = styled.div`
-    text-align: center;
+  text-align: center;
 `
 
 const H1 = styled.h1`
@@ -30,7 +30,8 @@ const P = styled.p`
 
 const ButtonContainer = styled.div`
   position: absolute;
-  bottom: 20vh;
+  bottom: 10em;
+  z-index: 100;
 `
 
 function Distro({ profile, db, ...props }) {
@@ -97,10 +98,10 @@ function Distro({ profile, db, ...props }) {
           <Button onClick={handleClick}>Refresh code</Button>
           <SecondaryButton onClick={handleShare}>Share code</SecondaryButton>
         </ButtonContainer>
-        <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
         <Toast code={nextUrl} >
           {toastMsg}
         </Toast>
+        <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0 }} alt='plants growing from footer' />
     </Container>
 }
 

@@ -44,8 +44,6 @@ const Error = styled.span`
 `
 
 const StyledButton = styled(Button)`
-  position: absolute;
-  bottom: 5em;
 `
 
 function Claim({ db, ...props }) {
@@ -102,8 +100,6 @@ function Claim({ db, ...props }) {
         </>}
         {status === 0 && <>
           <br/>
-          <br/>
-          <br/>
           <H1>WHITELIST SIGN UP</H1>
           <P>Enter your info to join the Lens Whitelist</P>
           <br/>
@@ -144,10 +140,9 @@ function Claim({ db, ...props }) {
             {errors.email && <Error>Please enter a valid email.</Error>}
             <br/>
             <br/>
-            <br/>
             
             <div style={{ width: '100%', textAlign: 'center' }}>
-              <img src={Lensie} style={{ marginLeft: '1.6em' }} alt={'lens mascot'} />
+              <img src={Lensie} style={{ height: '7em', marginLeft: '1.6em' }} alt={'lens mascot'} />
             </div>
 
             <StyledButton type="submit">Submit</StyledButton>
