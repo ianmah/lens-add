@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useWallet } from '../utils/wallet'
-import { utils } from 'ethers'
-import omitDeep from 'omit-deep'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
@@ -10,7 +7,8 @@ import Address from '../components/Address'
 import { useAccount } from 'wagmi'
 import { ADMIN_LIST } from '../utils/constants'
 import { collection, getDocs } from 'firebase/firestore'
-import { CSVLink, CSVDownload } from 'react-csv'
+import { CSVLink } from 'react-csv'
+import header from '../assets/header.svg'
 
 const Container = styled.div`
     display: flex;
@@ -36,6 +34,7 @@ function Home({ profile, setProfile, db, ...props }) {
         setCsvData(newData)
     }
     return <>
+    <img src={header} style={{ width: '30vw', position: 'absolute', top: 0, left: '9vw' }} alt='decoration' />
     <Address/>
     <Container>
         {!isConnected && <Wallet setProfile={setProfile} profile={profile}/>}

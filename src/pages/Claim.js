@@ -6,6 +6,7 @@ import Button from '../components/Button'
 import Card from '../components/Card'
 import { increment, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import Lensie from '../assets/lensie.svg'
+import sad from '../assets/sad.svg'
 import WalletIllustration from '../assets/illustration.png'
 
 const Container = styled.div`
@@ -90,8 +91,15 @@ function Claim({ db, ...props }) {
         {(status === 404 || status === 403) && <>
           <br/>
           <br/>
-        <H1>OOPS! LINK HAS EXPIRED</H1>
-        Please ask for a new code
+          <br/>
+          <div style={{ textAlign: 'center' }}>
+            <H1>OOPS! LINK HAS EXPIRED</H1>
+            Please ask for a new code
+            <br/>
+            <br/>
+            <br/>
+            <img src={sad} alt='sad lens' />
+          </div>
         </>}
         {status === 200 && <>
           <br/>

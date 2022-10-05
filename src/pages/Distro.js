@@ -15,6 +15,7 @@ import Spinner from '../assets/Spinner'
 import Address from '../components/Address'
 import { useAccount } from 'wagmi'
 import { ADMIN_LIST } from '../utils/constants'
+import header from '../assets/header.svg'
 
 const Container = styled.div`
   text-align: center;
@@ -94,6 +95,7 @@ function Distro({ profile, db, ...props }) {
 
     return <Container>
       {ADMIN_LIST.has(address) && <>
+        <img src={header} style={{ width: '30vw', position: 'absolute', top: 0, left: '9vw' }} alt='decoration' />
         <Address/>
         <H1>SCAN NOW</H1>
         <P>to be added to the Lens Whitelist</P>
