@@ -6,6 +6,7 @@ import { useWallet } from './utils/wallet'
 import GlobalStyle from './theme/GlobalStyle'
 import ThemeProvider from './theme/ThemeProvider'
 import Home from './pages/Home'
+import Csv from './pages/Csv'
 import Distro from './pages/Distro'
 import Claim from './pages/Claim'
 import Button from './components/Button'
@@ -97,6 +98,7 @@ function App() {
                         <Route path='/' element={<Container><Home profile={profile} db={db} /></Container>}/>
                         <Route path='/distro' element={<Container><Distro profile={profile} db={db} /></Container>}/>
                         <Route path='/claim/:code' element={<Container><Claim db={db} /></Container>}/>
+                        <Route path='/csv' element={<Container><Csv profile={profile} db={db} /></Container>}/>
                     </Routes>
                 </ThemeProvider>
             </ApolloProvider>

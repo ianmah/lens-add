@@ -6,6 +6,8 @@ import Wallet from '../components/Wallet'
 import Address from '../components/Address'
 import { useAccount } from 'wagmi'
 import { ADMIN_LIST } from '../utils/constants'
+import { collection, getDocs } from 'firebase/firestore'
+import { CSVLink } from 'react-csv'
 import header from '../assets/header.svg'
 
 const Container = styled.div`
@@ -22,8 +24,19 @@ const Wrapper = styled.div`
     padding: 1em;
 `
 
-function Home({ profile, setProfile, db, ...props }) {
+function Csv({ profile, setProfile, db, ...props }) {
     const { address, isConnected } = useAccount()
+    const [csvData, setCsvData] = useState([])
+
+    const generateCSV = async () => {
+        const querySnapshot = await getDocs(collection(db, "forms"))
+        const newData = []
+        querySnapshot.forEach((doc) => {
+            const { firstName, lastName, walletAddress, email, referrer } = doc.data()
+            newData.push([firstName, lastName, walletAddress, email, referrer])
+        })
+        setCsvData(newData)
+    }
     return <>
     <img src={header} style={{ width: '30vw', position: 'absolute', top: 0, left: '9vw' }} alt='decoration' />
     <Address/>
@@ -32,10 +45,8 @@ function Home({ profile, setProfile, db, ...props }) {
         {isConnected && ADMIN_LIST.has(address) && 
         <>
             <h1>Dashboard</h1>
-            <Link to={'distro'}>
-                <Button onClick={() => {}}>Generate Code</Button>
-            </Link>
-            <p style={{ color: 'grey', marginTop: '1em' }} >Generate a QR code that allows users to scan and join the Lens Whitelist</p>
+            <Button onClick={() => generateCSV()}>Submissions CSV</Button>
+            { csvData[0] && <CSVLink data={csvData} >Download CSV</CSVLink>}
         </>
         }
         {isConnected && !ADMIN_LIST.has(address) && <Wrapper>
@@ -49,4 +60,4 @@ function Home({ profile, setProfile, db, ...props }) {
     </>
 }
 
-export default Home
+export default Csv

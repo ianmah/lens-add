@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import Button, { SecondaryButton } from '../components/Button'
 import LensQR from '../components/LensQR'
 import Toast from '../components/Toast'
@@ -113,7 +114,9 @@ function Distro({ profile, db, ...props }) {
           <br/>
           <h1>You do not currently have access</h1>
           <p>Please sign in with an admin address.</p>
-          <p style={{ color: 'grey' }} >If you need to swap wallets, click your wallet address to sign out.</p>
+          <Link to={'/'}>
+            <Button>Go back</Button>
+          </Link>
           </>
       }
     </Container>
