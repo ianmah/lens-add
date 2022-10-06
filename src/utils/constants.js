@@ -16,6 +16,7 @@ const whitelist = [
     '0x8eC94086A724cbEC4D37097b8792cE99CaDCd520', // bradorbradley.lens
     '0xA7d53695aF1FD11E0b75d37695290C102D59D743', // christina.lens
     '0xA83444576F86C8B59A542eC2F286a19aB12c2666', // paris.lens
+    '0xcA1F6d7d8E902617f8Bdd87866e00f9844C40a77', // jouni.lens
 ]
 export const ADMIN_LIST = new Set(whitelist);
 export const HOSTNAME = process.env.NODE_ENV === 'production' ? 'https://lens-wl.web.app' : 'http://localhost:4783'
