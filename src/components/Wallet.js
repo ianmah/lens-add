@@ -27,7 +27,7 @@ const H1 = styled.h1`
 
 const ButtonArea = styled.div`
   position: absolute;
-  bottom: 10vh;
+  bottom: 3em;
 `
 
 function Wallet({ ...props }) {
