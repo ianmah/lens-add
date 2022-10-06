@@ -30,10 +30,12 @@ function Csv({ profile, setProfile, db, ...props }) {
 
     const generateCSV = async () => {
         const querySnapshot = await getDocs(collection(db, "forms"))
-        const newData = []
+        const newData = [
+            ['First Name', 'Last Name', 'Wallet', 'Email', 'Referrer', 'Invite Code' ]
+        ]
         querySnapshot.forEach((doc) => {
-            const { firstName, lastName, walletAddress, email, referrer } = doc.data()
-            newData.push([firstName, lastName, walletAddress, email, referrer])
+            const { firstName, lastName, walletAddress, email, referrer, code } = doc.data()
+            newData.push([firstName, lastName, walletAddress, email, referrer, code ])
         })
         setCsvData(newData)
     }
@@ -46,6 +48,8 @@ function Csv({ profile, setProfile, db, ...props }) {
         <>
             <h1>Dashboard</h1>
             <Button onClick={() => generateCSV()}>Submissions CSV</Button>
+            <br/>
+            <br/>
             { csvData[0] && <CSVLink data={csvData} >Download CSV</CSVLink>}
         </>
         }

@@ -112,7 +112,8 @@ function Claim({ db, ...props }) {
           <br/>
           <img src={WalletIllustration} width='100%' style={{ position: 'absolute', top: 0, left: 0 }} alt='colorful pattern' />
           <h1>Congratulations</h1>
-          Your details have been submitted! You will receive an email within 48 hours with your whitelist details.
+          Your details have been submitted! <br/>
+          You will receive an email within 48 hours with your whitelist details.
         </>}
         {status === 0 && <>
           <br/>
