@@ -3,8 +3,8 @@ import { useAccount, useDisconnect } from 'wagmi'
 import signout from '../assets/signout.svg'
 
 const Span = styled.div`
-    background: #74434A;
-    color: #FFBFBC;
+    background: #2F4531;
+    color: #E5FFBE;
     padding: 0.4em 0.7em;
     border-radius: 10px;
     margin: 1em;

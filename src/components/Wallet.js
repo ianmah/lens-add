@@ -22,10 +22,6 @@ const Header = styled.div`
 `
 
 const H1 = styled.h1`
-  color: #F5C3CC;
-  span {
-    color: white;
-  }
   text-align: left;
 `
 
@@ -41,7 +37,7 @@ function Wallet({ ...props }) {
     <LoginContainer>
       { !isConnected && <>
         <Header>
-          <H1><span>Share</span> and <span>collect</span> your unique code</H1>
+          <H1>GROW THE LENSVERSE BY SHARING UNIQUE QR CODES</H1>
         </Header>
         <img src={WalletIllustration} width='100%' style={{ position: 'absolute', top: 0, left: 0 }} alt='colorful pattern' />
         <ButtonArea>

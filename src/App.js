@@ -84,7 +84,7 @@ function App() {
           <RainbowKitProvider
             chains={chains}
             theme={darkTheme({
-              accentColor: '#BCE2E5',
+              accentColor: '#ABFE2C',
               accentColorForeground: '#212322',
               borderRadius: 'small',
               overlayBlur: 'small',

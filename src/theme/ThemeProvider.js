@@ -2,14 +2,14 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
 const theme = {
-    primary: '#FF8A9F',
-    primaryHover: '#FAAAAA',
+    primary: '#ABFE2C',
+    primaryHover: '#E5FFBE',
     border: '#8300d0 2px solid',
     // background: 'linear-gradient(140deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 50%, rgba(76,13,113,1) 100%)',
     background: '#232428',
     lightBackground: '#eeeeee18',
     displayText: '#fff',
-    text: '#FFBFBC',
+    text: '#E5FFBE',
     toastText: 'black',
     textLight: '#212322',
     greyed: '#747c90',

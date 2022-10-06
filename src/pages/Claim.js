@@ -42,6 +42,11 @@ const P = styled.p`
   margin: 0;
 `
 
+const Info = styled.p`
+  color: grey;
+  font-size: 0.8em;
+`
+
 const Error = styled.span`
   color: #FF6161;
   font-size: 0.9em;
@@ -107,7 +112,7 @@ function Claim({ db, ...props }) {
           <br/>
           <img src={WalletIllustration} width='100%' style={{ position: 'absolute', top: 0, left: 0 }} alt='colorful pattern' />
           <h1>Congratulations</h1>
-          Stay tuned to recieve an email about your whitelist details
+          Your details have been submitted! You will receive an email within 48 hours with your whitelist details.
         </>}
         {status === 0 && <>
           <br/>
@@ -159,6 +164,7 @@ function Claim({ db, ...props }) {
             <Label>Email</Label>
             <Input {...register('email', { required: true, pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ })} />
             {errors.email && <Error>Please enter a valid email.</Error>}
+            <Info>Don’t worry, we will only use this to send you notifications about your Lens whitelist. Never spam. </Info>
             <br/>
             <br/>
             

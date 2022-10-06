@@ -9,7 +9,7 @@ const Button = styled.button`
     font-family: 'Poppins';
     font-size: 13px;
     color: ${(p) => p.theme.textLight};
-    background: linear-gradient(89.19deg, #BCE2E5 -0.27%, #FFE9EE 49.84%, #FEF5E6 104.31%);
+    background: ${p => p.theme.primary};
     letter-spacing: 0.02em;
     transition: all 150ms;
     :hover {
@@ -32,13 +32,20 @@ const Button = styled.button`
 `;
 
 export const SecondaryButton = styled(Button)`
-    color: ${(p) => p.theme.textLight};
-    background: #D0D0D066;
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background: none;
     :hover {
-        background: #D0D0D088;
+        background: none;
+        outline: none;
+        box-shadow: none;
     }
     :focus {
-        background: #D0D0D088;
+        outline: none;
+        color: grey;
+        box-shadow: none;
+        background: none;
     }
 `
 
