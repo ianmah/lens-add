@@ -82,7 +82,7 @@ function Distro({ profile, db, ...props }) {
 
     const handleShare = async () => {
       navigator.clipboard.writeText(nextUrl).then(function() {
-        setToastMsg('Copied to clipboard!')
+        setToastMsg('Link copied to clipboard!')
       }, function(err) {
         console.error('Could not copy text: ', err);
       });
@@ -102,7 +102,7 @@ function Distro({ profile, db, ...props }) {
         <img src={footer} style={{ width: '95%', position: 'absolute', bottom: 0, left: 0, zIndex: 0 }} alt='plants growing from footer' />
         <ButtonContainer>
           <Button onClick={handleClick}>Refresh code</Button>
-          <SecondaryButton onClick={handleShare}>Share code</SecondaryButton>
+          <SecondaryButton onClick={handleShare}>Copy link</SecondaryButton>
         </ButtonContainer>
         <Toast code={nextUrl} >
           {toastMsg}

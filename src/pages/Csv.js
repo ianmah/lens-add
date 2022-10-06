@@ -47,7 +47,7 @@ function Csv({ profile, setProfile, db, ...props }) {
         {isConnected && ADMIN_LIST.has(address) && 
         <>
             <h1>Dashboard</h1>
-            <Button onClick={() => generateCSV()}>Submissions CSV</Button>
+            <Button onClick={() => generateCSV()}>Generate CSV</Button>
             <br/>
             <br/>
             { csvData[0] && <CSVLink data={csvData} >Download CSV</CSVLink>}
