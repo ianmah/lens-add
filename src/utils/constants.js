@@ -2,6 +2,7 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 export const CHAIN = process.env.REACT_APP_CHAIN ? process.env.REACT_APP_CHAIN : process.env.NODE_ENV === 'production' ? 'polygon' : 'mumbai'
 const whitelist = [
     '0x374002dD7f555D037F7566cC75ce563765a2F456', // asian.lens
+    '0x7eE4a1f2233B9c37dA1b2f8F743160e52b967ADe',
     '0xA6ce00cFd952A52d0d0b12DFE0145688be6fd6d3',
     '0xA5FCa146092D00AcE0d6FAefC7D9c25e4de8116C',
     '0xB8D81739F17235497188ef98049BFc760624B41B',
@@ -17,6 +18,7 @@ const whitelist = [
     '0xA7d53695aF1FD11E0b75d37695290C102D59D743', // christina.lens
     '0xA83444576F86C8B59A542eC2F286a19aB12c2666', // paris.lens
     '0xcA1F6d7d8E902617f8Bdd87866e00f9844C40a77', // jouni.lens
+    '0x66Da63B03feCA7Dd44a5bB023BB3645D3252Fa32', // keeks.lens
 ]
 export const ADMIN_LIST = new Set(whitelist);
 export const HOSTNAME = process.env.NODE_ENV === 'production' ? 'https://lens-wl.web.app' : 'http://localhost:4783'
