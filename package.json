@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@ensdomains/ensjs": "^3.0.0-alpha.30",
     "@rainbow-me/rainbowkit": "^0.7.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",

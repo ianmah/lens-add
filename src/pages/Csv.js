@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Wallet from '../components/Wallet'
 import Address from '../components/Address'
@@ -9,6 +8,7 @@ import { ADMIN_LIST } from '../utils/constants'
 import { collection, getDocs } from 'firebase/firestore'
 import { CSVLink } from 'react-csv'
 import header from '../assets/header.svg'
+import { providers } from 'ethers'
 
 const Container = styled.div`
     display: flex;
@@ -28,14 +28,21 @@ function Csv({ profile, setProfile, db, ...props }) {
     const { address, isConnected } = useAccount()
     const [csvData, setCsvData] = useState([])
 
+    const provider = new providers.AlchemyProvider(null, process.env.ALCHEMY_ID)
+
     const generateCSV = async () => {
         const querySnapshot = await getDocs(collection(db, "forms"))
         const newData = [
             ['First Name', 'Last Name', 'Wallet', 'Email', 'Referrer', 'Invite Code' ]
         ]
-        querySnapshot.forEach((doc) => {
+        querySnapshot.forEach(async (doc) => {
             const { firstName, lastName, walletAddress, email, referrer, code } = doc.data()
-            newData.push([firstName, lastName, walletAddress, email, referrer, code ])
+            let address;
+            if (walletAddress.includes('.eth')) {
+                address = await provider.resolveName(walletAddress);
+                console.log(address)
+            }
+            newData.push([firstName, lastName, address || walletAddress, email, referrer, code ])
         })
         setCsvData(newData)
     }

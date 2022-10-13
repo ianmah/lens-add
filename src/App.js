@@ -67,7 +67,6 @@ function App() {
         connectors,
         provider
     })
-
   
     const { setAuthToken } = useWallet()
     const [profile, setProfile] = useState({})
